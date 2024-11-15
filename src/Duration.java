@@ -1,37 +1,60 @@
+import java.util.ArrayList;
+
 public class Duration {
-    private int hours;
-    private int minutes;
-    private int seconds;
+  private int hours;
+  private int minutes;
+  private int seconds;
 
-    public Duration(int hours, int minutes, int seconds) {
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
+  public Duration(int hours, int minutes, int seconds) {
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+  }
+
+  public String toString() {
+    return String.format("");
+  }
+
+  public static void main(String[] args) {
+    var passed = true;
+
+    if (!testCompareTo()) passed = false;
+
+    if (!passed) System.err.printf("Error: Test Duration::main failed");
+  }
+
+  private static boolean testCompareTo() {
+    var passed = true;
+
+    var durations = new ArrayList<Duration>();
+    durations.add(new Duration(0, 0, 0));
+    durations.add(new Duration(0, 0, 1));
+    durations.add(new Duration(0, 1, 0));
+    durations.add(new Duration(0, 1, 1));
+    durations.add(new Duration(1, 0, 0));
+    durations.add(new Duration(1, 0, 1));
+    durations.add(new Duration(1, 1, 0));
+    durations.add(new Duration(1, 1, 1));
+
+    for (var i = 0; i < durations.size(); ++i) {
+      for (var j = 0; j < durations.size(); ++j) {
+        var di = durations.get(i);
+        var dj = durations.get(j);
+
+        var indexDiffBound = Math.clamp(i - j, -1, 1);
+
+        var valueDiff = di.compareTo(dj);
+        var valueDiffBound = Math.clamp(valueDiff, -1, 1);
+
+        if (indexDiffBound != valueDiffBound) {
+          System.err.printf(
+              "Error: Test Duration::testCompareTo failed: Duration{%s}.compareTo(Duration{%s}) == %d\n",
+              di.toString(), dj.toString(), valueDiff);
+          passed = false;
+        }
+      }
     }
 
-    public String toString() {
-        return String.format("");
-    }
-
-    static public void main(String[] args) {
-        var d = new Duration(1, 2, 3);
-        System.out.println('\n' + d.toString());
-        // final var d0 = new Duration(0, 0, 0);
-        // final var d1 = new Duration(0, 0, 1);
-        // final var d2 = new Duration(0, 1, 0);
-        // final var d3 = new Duration(0, 1, 1);
-        // final var d4 = new Duration(1, 0, 0);
-        // final var d5 = new Duration(1, 0, 1);
-        // final var d6 = new Duration(1, 1, 0);
-        // final var d7 = new Duration(1, 1, 1);
-
-        // todo: compare equal durations
-
-        // assert d0.compareTo(d1) < 0;
-        // assert d0.compareTo(d1) < 0;
-        // assert d0.compareTo(d2) < 0;
-        // assert d0.compareTo(d3) < 0;
-        // assert d0.compareTo(d2) < 0;
-        // assert d0.compareTo(d2) < 0;
-    }
+    return passed;
+  }
 }
