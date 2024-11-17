@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 
-public class Duration {
+public class Duration implements Comparable<Duration> {
   private int hours;
   private int minutes;
   private int seconds;
+
+  public Duration() {
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+  }
 
   public Duration(int hours, int minutes, int seconds) {
     this.hours = hours;
@@ -12,7 +18,44 @@ public class Duration {
   }
 
   public String toString() {
-    return String.format("");
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+  }
+
+
+  /* converting the duration of the songs to the second for easier compare */
+  private int totalSeconds() {
+    return (hours * 3600) +(minutes * 60) + seconds;
+  }
+ /* comparing one duration to another */
+  public boolean compareTo(Duration other) {
+    return totalSeconds() < other.totalSeconds();
+  }
+
+
+  /* time setters */
+  public void setSeconds(int seconds) {
+    Math.clamp(seconds, 0, 59);
+  }
+
+  public void setMinutes(int minutes) {
+    Math.clamp(minutes, 0, 59);
+  }
+
+  public void setHours(int hours) {
+    Math.clamp(hours, 0, hours);
+  }
+
+  /* getters */
+  public int getSeconds() {
+    return seconds;
+  }
+
+  public int getMinutes() {
+    return minutes;
+  }
+
+  public int getHours() {
+    return hours;
   }
 
   public static void main(String[] args) {
