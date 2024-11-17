@@ -27,10 +27,9 @@ public class Duration implements Comparable<Duration> {
     return (hours * 3600) +(minutes * 60) + seconds;
   }
  /* comparing one duration to another */
-  public boolean compareTo(Duration other) {
-    return totalSeconds() < other.totalSeconds();
+  public int compareTo(Duration other) {
+    return Integer.compare(totalSeconds(), other.totalSeconds());
   }
-
 
   /* time setters */
   public void setSeconds(int seconds) {
