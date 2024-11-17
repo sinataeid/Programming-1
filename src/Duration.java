@@ -61,9 +61,80 @@ public class Duration implements Comparable<Duration> {
   public static void main(String[] args) {
     var passed = true;
 
+    if (!testConstructors()) passed = false;
+    if (!testGetSet()) passed = false;
     if (!testCompareTo()) passed = false;
 
     if (!passed) System.err.println("Error: Test Duration::main failed");
+  }
+
+  private static boolean testConstructors() {
+    // TODO: test values outside of [0, 59]
+    var passed = true;
+
+    var d = new Duration();
+    if (d.hours != 0 || d.minutes != 0 || d.seconds != 0) {
+      System.err.printf(
+          "Error: Test Duration::testConstructors failed: new Duration() is Duration{%d, %d, %d}",
+          d.hours, d.minutes, d.seconds);
+      passed = false;
+    }
+
+    d = new Duration(0, 0, 0);
+    if (d.hours != 0 || d.minutes != 0 || d.seconds != 0) {
+      System.err.printf(
+          "Error: Test Duration::testConstructors failed: new Duration(0, 0, 0) is Duration{%d, %d, %d}",
+          d.hours, d.minutes, d.seconds);
+      passed = false;
+    }
+
+    d = new Duration(1, 2, 3);
+    if (d.hours != 1 || d.minutes != 2 || d.seconds != 3) {
+      System.err.printf(
+          "Error: Test Duration::testConstructors failed: new Duration(1, 2, 3) is Duration{%d, %d, %d}",
+          d.hours, d.minutes, d.seconds);
+      passed = false;
+    }
+
+    return passed;
+  }
+
+  private static boolean testGetSet() {
+    // TODO: test values outside of [0, 59]
+    var passed = true;
+
+    var d = new Duration();
+
+    for (var i = 0; i < 60; ++i) {
+      d.setHours(i);
+      var result = d.getHours();
+      if (result != i) {
+        System.err.printf(
+            "Error: Test Duration::testGetSet failed: duration.setHours(%d); duration.getHours() == %d\n",
+            i, result);
+        passed = false;
+      }
+
+      d.setMinutes(i);
+      var result = d.getMinutes();
+      if (result != i) {
+        System.err.printf(
+            "Error: Test Duration::testGetSet failed: duration.setMinutes(%d); duration.getMinutes() == %d\n",
+            i, result);
+        passed = false;
+      }
+
+      d.setSeconds(i);
+      var result = d.getSeconds();
+      if (result != i) {
+        System.err.printf(
+            "Error: Test Duration::testGetSet failed: duration.setSeconds(%d); duration.getSeconds() == %d\n",
+            i, result);
+        passed = false;
+      }
+    }
+
+    return passed;
   }
 
   private static boolean testCompareTo() {
