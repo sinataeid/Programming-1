@@ -3,8 +3,7 @@ public class Track {
   public Duration duration;
 
   public Track() {
-    title = "Untitled";
-    duration = new Duration();
+    this("Untitled", new Duration());
   }
 
   public Track(String title, Duration duration) {
