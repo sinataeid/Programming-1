@@ -69,7 +69,6 @@ public class Duration implements Comparable<Duration> {
   }
 
   private static boolean testConstructors() {
-    // TODO: test values outside of [0, 59]
     var passed = true;
 
     var d = new Duration();
@@ -96,11 +95,26 @@ public class Duration implements Comparable<Duration> {
       passed = false;
     }
 
+    d = new Duration(-1, -2, -3);
+    if (d.hours != 0 || d.minutes != 0 || d.seconds != 0) {
+      System.err.printf(
+          "Error: Test Duration::testConstructors failed: new Duration(-1, -2, -3) is Duration{%d, %d, %d}",
+          d.hours, d.minutes, d.seconds);
+      passed = false;
+    }
+
+    d = new Duration(100, 200, 300);
+    if (d.hours != 100 || d.minutes != 59 || d.seconds != 59) {
+      System.err.printf(
+          "Error: Test Duration::testConstructors failed: new Duration(100, 200, 300) is Duration{%d, %d, %d}",
+          d.hours, d.minutes, d.seconds);
+      passed = false;
+    }
+
     return passed;
   }
 
   private static boolean testGetSet() {
-    // TODO: test values outside of [0, 59]
     var passed = true;
 
     var d = new Duration();
@@ -116,7 +130,7 @@ public class Duration implements Comparable<Duration> {
       }
 
       d.setMinutes(i);
-      var result = d.getMinutes();
+      result = d.getMinutes();
       if (result != i) {
         System.err.printf(
             "Error: Test Duration::testGetSet failed: duration.setMinutes(%d); duration.getMinutes() == %d\n",
@@ -125,13 +139,67 @@ public class Duration implements Comparable<Duration> {
       }
 
       d.setSeconds(i);
-      var result = d.getSeconds();
+      result = d.getSeconds();
       if (result != i) {
         System.err.printf(
             "Error: Test Duration::testGetSet failed: duration.setSeconds(%d); duration.getSeconds() == %d\n",
             i, result);
         passed = false;
       }
+    }
+
+    d.setHours(-1);
+    var result = d.getHours();
+    if (result != 0) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setHours(%d); duration.getHours() == %d\n",
+          -1, result);
+      passed = false;
+    }
+
+    d.setMinutes(-2);
+    result = d.getMinutes();
+    if (result != 0) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setMinutes(%d); duration.getMinutes() == %d\n",
+          -2, result);
+      passed = false;
+    }
+
+    d.setSeconds(-3);
+    result = d.getSeconds();
+    if (result != 0) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setSeconds(%d); duration.getSeconds() == %d\n",
+          -3, result);
+      passed = false;
+    }
+
+    d.setHours(100);
+    result = d.getHours();
+    if (result != 60) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setHours(%d); duration.getHours() == %d\n",
+          100, result);
+      passed = false;
+    }
+
+    d.setMinutes(200);
+    result = d.getMinutes();
+    if (result != 59) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setMinutes(%d); duration.getMinutes() == %d\n",
+          200, result);
+      passed = false;
+    }
+
+    d.setSeconds(300);
+    result = d.getSeconds();
+    if (result != 59) {
+      System.err.printf(
+          "Error: Test Duration::testGetSet failed: duration.setSeconds(%d); duration.getSeconds() == %d\n",
+          300, result);
+      passed = false;
     }
 
     return passed;
