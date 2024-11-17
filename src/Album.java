@@ -1,8 +1,11 @@
+
+import java.util.ArrayList;
+
 public class Album {
     public String artist;
     public String albumTitle;
     public int releaseYear;
-
+    private ArrayList<Track> tracks;
 
     public Album() {
         this("Unknown", "Untitled", 0);
@@ -13,5 +16,11 @@ public class Album {
         this.albumTitle = albumTitle;
         this.releaseYear = releaseYear;
     }
+
+    public static void main(String[] args) {
+        
+    }
+
+    //tests here
 }
 
