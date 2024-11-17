@@ -174,7 +174,7 @@ public class Duration implements Comparable<Duration> {
 
     d.setHours(100);
     result = d.getHours();
-    if (result != 60) {
+    if (result != 100) {
       System.err.printf(
           "Error: Test Duration::testGetSet failed: duration.setHours(%d); duration.getHours() == %d\n",
           100, result);
