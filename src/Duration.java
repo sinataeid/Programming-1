@@ -6,16 +6,14 @@ public class Duration implements Comparable<Duration> {
   private int seconds;
 
   public Duration() {
-    this.hours = 0;
-    this.minutes = 0;
-    this.seconds = 0;
+    this(0, 0, 0);
   }
 
   public Duration(int hours, int minutes, int seconds) {
-    this.hours = hours;
-    this.minutes = minutes;
-    this.seconds = seconds;
-  }
+    setHours(hours);
+    setMinutes(minutes);
+    setSeconds(seconds);
+    }
 
   public String toString() {
     return String.format("%02d:%02d:%02d", hours, minutes, seconds);
@@ -33,15 +31,15 @@ public class Duration implements Comparable<Duration> {
 
   /* time setters */
   public void setSeconds(int seconds) {
-    Math.clamp(seconds, 0, 59);
+    this.seconds = Math.clamp(seconds, 0, 59); 
   }
 
   public void setMinutes(int minutes) {
-    Math.clamp(minutes, 0, 59);
+    this.minutes = Math.clamp(minutes, 0, 59);
   }
 
   public void setHours(int hours) {
-    Math.clamp(hours, 0, Integer.MAX_VALUE);
+    this.hours = Math.clamp(hours, 0, Integer.MAX_VALUE);
   }
 
   /* getters */
