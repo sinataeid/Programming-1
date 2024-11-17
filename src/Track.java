@@ -1,6 +1,6 @@
 public class Track {
-  public Duration duration;
   private String title;
+  public Duration duration;
 
   public Track() {
     this("Untitled", new Duration());
@@ -17,7 +17,7 @@ public class Track {
 
   public void setTitle(String title) {
     if (title.isEmpty()) {
-      this.title = "Unknown";
+      this.title = "Untitled";
     } else {
       this.title = title;
     }
