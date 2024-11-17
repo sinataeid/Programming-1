@@ -41,7 +41,7 @@ public class Duration implements Comparable<Duration> {
   }
 
   public void setHours(int hours) {
-    Math.clamp(hours, 0, hours);
+    Math.clamp(hours, 0, Integer.MAX_VALUE);
   }
 
   /* getters */
