@@ -13,7 +13,7 @@ public class Duration implements Comparable<Duration> {
     setHours(hours);
     setMinutes(minutes);
     setSeconds(seconds);
-    }
+  }
 
   public String toString() {
     return String.format("%02d:%02d:%02d", hours, minutes, seconds);
