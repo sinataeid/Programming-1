@@ -25,7 +25,10 @@ public class Track {
 
     if (!testConstructorsAndGets()) passed = false;
 
-    if (!passed) System.err.println("Error: Test Track::main failed");
+    if (!passed)
+      System.err.println("Error: Test Track::main failed");
+    else
+      System.err.println("Test Track::main passed");
   }
 
   public static boolean testConstructorsAndGets() {
@@ -84,7 +87,7 @@ public class Track {
         passed = false;
       }
     }
-    
+
     return passed;
   }
 }
