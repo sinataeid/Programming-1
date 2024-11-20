@@ -19,19 +19,19 @@ public class Duration implements Comparable<Duration> {
     return String.format("%02d:%02d:%02d", hours, minutes, seconds);
   }
 
-
   /* converting the duration of the songs to the second for easier compare */
   private int totalSeconds() {
-    return (hours * 3600) +(minutes * 60) + seconds;
+    return (hours * 3600) + (minutes * 60) + seconds;
   }
- /* comparing one duration to another */
+
+  /* comparing one duration to another */
   public int compareTo(Duration other) {
     return Integer.compare(totalSeconds(), other.totalSeconds());
   }
 
   /* time setters */
   public void setSeconds(int seconds) {
-    this.seconds = Math.clamp(seconds, 0, 59); 
+    this.seconds = Math.clamp(seconds, 0, 59);
   }
 
   public void setMinutes(int minutes) {
@@ -58,11 +58,15 @@ public class Duration implements Comparable<Duration> {
   public static void main(String[] args) {
     var passed = true;
 
-    if (!testConstructors()) passed = false;
-    if (!testGetSet()) passed = false;
-    if (!testCompareTo()) passed = false;
+    if (!testConstructors())
+      passed = false;
+    if (!testGetSet())
+      passed = false;
+    if (!testCompareTo())
+      passed = false;
 
-    if (!passed) System.err.println("Error: Test Duration::main failed");
+    if (!passed)
+      System.err.println("Error: Test Duration::main failed");
   }
 
   private static boolean testConstructors() {

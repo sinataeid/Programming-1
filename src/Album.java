@@ -15,50 +15,38 @@ public class Album {
   }
 
   public Album(String artist, String title, int releaseYear, ArrayList<Track> tracks) {
-    this.artist = artist;
-    this.title = title;
-    this.releaseYear = releaseYear;
+
+    if (artist.isEmpty()) {
+      this.artist = "Unknown";
+    } else {
+      this.artist = artist;
+    }
+
+    if (title.isEmpty()) {
+      this.title = "Untitled";
+    } else {
+      this.title = title;
+    }
+
+    this.releaseYear = Math.clamp(releaseYear, 0, Integer.MAX_VALUE);
     this.tracks = tracks;
+
   }
 
   public String getArtist() {
     return artist;
   }
 
-  public void setArtist(String artist) {
-    if (artist.isEmpty()) {
-      this.artist = "Unknown";
-    } else {
-      this.artist = artist;
-    }
-  }
-
   public String getTitle() {
     return title;
-  }
-
-  public void setTitle(String title) {
-    if (title.isEmpty()) {
-      this.title = "Untitled";
-    } else {
-      this.title = title;
-    }
   }
 
   public String getReleaseYear() {
     return title;
   }
 
-  public void setReleaseYear(int releaseYear) {
-    this.releaseYear = Math.clamp(releaseYear, 0, Integer.MAX_VALUE);
-  }
-
   public ArrayList<Track> getTracks() {
     return tracks;
-  }
-
-  public void setTracks(ArrayList<Track> tracks) {
-    this.tracks = tracks;
   }
 
   public void addTrack(Track track) {
@@ -75,4 +63,5 @@ public class Album {
   }
 
   // tests here
+
 }
