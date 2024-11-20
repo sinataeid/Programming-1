@@ -1,59 +1,90 @@
 public class Track {
-  private String title;
-  public Duration duration;
-
-  public Track() {
-    this("Untitled", new Duration());
-  }
+  private String _title;
+  private Duration _duration;
 
   public Track(String title, Duration duration) {
-    this.title = title;
-    this.duration = duration;
+    _title = title;
+    _duration = duration;
   }
 
   public String getTitle() {
-    return title;
+    return _title;
   }
 
-  public void setTitle(String title) {
-    if (title.isEmpty()) {
-      this.title = "Untitled";
-    } else {
-      this.title = title;
-    }
+  public Duration getDuration() {
+    return _duration;
   }
 
+  @Override
   public String toString() {
-    return String.format("%s (%s)", title, duration);
+    return String.format("%s (%s)", _title, _duration);
   }
 
   public static void main(String[] args) {
     var passed = true;
 
-    if(!testSetTitle()) passed = false;
+    if (!testConstructorsAndGets()) passed = false;
 
-    if (!passed) System.err.println("Error: Test Duration::main failed");
-
-    
+    if (!passed) System.err.println("Error: Test Track::main failed");
   }
-  public static boolean testSetTitle() {
+
+  public static boolean testConstructorsAndGets() {
     var passed = true;
 
-    var t = new Track();
-    if(!t.title.equals("Untitled")) {
-      System.err.printf("Error: {%s}", t.title);
-      passed = false;
+    {
+      var d = new Duration(0);
+      var t = new Track("", d);
+      if (!t._title.equals("") || t._duration.compareTo(new Duration(0)) != 0) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: new Track(\"\", Duration{\"%s\"}) is Track{\"%s\", Duration{\"%s\"}}\n",
+            d, t._title, t._duration);
+        passed = false;
+      }
+
+      var title = t.getTitle();
+      if (!title.equals("")) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: Track{\"%s\", Duration{\"%s\"}}.getTitle() == \"%s\"\n",
+            t._title, t._duration, title);
+        passed = false;
+      }
+
+      var duration = t.getDuration();
+      if (duration.compareTo(new Duration(0)) != 0) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: Track{\"%s\", Duration{\"%s\"}}.getDuration() == Duration{\"%s\"}\n",
+            t._title, t._duration, duration);
+        passed = false;
+      }
+    }
+
+    {
+      var d = new Duration(3661);
+      var t = new Track("Abc", d);
+      if (!t._title.equals("Abc") || t._duration.compareTo(new Duration(3661)) != 0) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: new Track(\"\", Duration{\"%s\"}) is Track{\"%s\", Duration{\"%s\"}}\n",
+            d, t._title, t._duration);
+        passed = false;
+      }
+
+      var title = t.getTitle();
+      if (!title.equals("Abc")) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: Track{\"%s\", Duration{\"%s\"}}.getTitle() == \"%s\"\n",
+            t._title, t._duration, title);
+        passed = false;
+      }
+
+      var duration = t.getDuration();
+      if (duration.compareTo(new Duration(3661)) != 0) {
+        System.err.printf(
+            "Error: Test Track::testConstructorsAndGets failed: Track{\"%s\", Duration{\"%s\"}}.getDuration() == Duration{\"%s\"}\n",
+            t._title, t._duration, duration);
+        passed = false;
+      }
     }
     
-
-    t = new Track("abc", new Duration());
-    if(!t.title.equals("abc")) {
-      System.err.printf("Error: {%s}", t.title);
-      passed = false;
-    }
-
-
     return passed;
   }
-
 }
