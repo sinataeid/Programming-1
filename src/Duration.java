@@ -37,6 +37,17 @@ public class Duration implements Comparable<Duration> {
     return _seconds;
   }
 
+  public Duration add(Duration other) {
+    Duration d = new Duration(this);
+
+    d._hours += other._hours;
+    d._minutes += other._minutes;
+    d._seconds += other._seconds;
+    d.normalise();
+
+    return d;
+  }
+
   @Override
   public String toString() {
     return String.format("%02d:%02d:%02d", _hours, _minutes, _seconds);
@@ -63,6 +74,7 @@ public class Duration implements Comparable<Duration> {
     var passed = true;
 
     if (!testConstructorsAndGets()) passed = false;
+    if (!testAdd()) passed = false;
     if (!testCompareTo()) passed = false;
 
     if (!passed)
@@ -160,6 +172,37 @@ public class Duration implements Comparable<Duration> {
     }
 
     return  passed;
+  }
+
+  private static boolean testAdd() {
+    var passed = true;
+
+    var a = new Duration(10, 20, 30);
+    var b = new Duration(30, 40, 50);
+    var c = a.add(b);
+
+    if (a.compareTo(new Duration(10, 20, 30)) != 0) {
+      System.err.printf(
+          "Error: Test Duration::testAdd failed: Duration/A/{%d, %d, %d}.add(duration); Duration/A/ is Duration{%d, %d, %d}\n",
+          10, 20, 30, a._hours, a._minutes, a._seconds);
+      passed = false;
+    }
+
+    if (b.compareTo(new Duration(30, 40, 50)) != 0) {
+      System.err.printf(
+          "Error: Test Duration::testAdd failed: duration.add(Duration/B/{%d, %d, %d}); Duration/B/ is Duration{%d, %d, %d}\n",
+          30, 40, 50, b._hours, b._minutes, b._seconds);
+      passed = false;
+    }
+
+    if (c.compareTo(new Duration(41, 1, 20)) != 0) {
+      System.err.printf(
+          "Error: Test Duration::testAdd failed: Duration{%d, %d, %d}.add(Duration{%d, %d, %d}) is Duration{%d, %d, %d}\n",
+          a._hours, a._minutes, a._seconds, b._hours, b._minutes, b._seconds, c._hours, c._minutes, c._seconds);
+      passed = false;
+    }
+
+    return passed;
   }
 
   private static boolean testCompareTo() {
