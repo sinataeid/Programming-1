@@ -19,6 +19,12 @@ public class Duration implements Comparable<Duration> {
     normalise();
   }
 
+  public Duration(Duration other) {
+    _hours = other._hours;
+    _minutes = other._minutes;
+    _seconds = other._seconds;
+  }
+
   public int getHours() {
     return _hours;
   }
@@ -32,7 +38,7 @@ public class Duration implements Comparable<Duration> {
   }
 
   public Duration add(Duration other) {
-    Duration d = new Duration(this._hours, this._minutes, this._seconds);
+    Duration d = new Duration(other);
 
     d._hours += other._hours;
     d._minutes += other._minutes;

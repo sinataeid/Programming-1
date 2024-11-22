@@ -7,6 +7,11 @@ public class Track {
     _duration = duration;
   }
 
+  public Track(Track other) {
+    _title = new String(other._title);
+    _duration = new Duration(other._duration);
+  }
+
   public String getTitle() {
     return _title;
   }
