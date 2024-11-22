@@ -7,11 +7,6 @@ public class Track {
     _duration = duration;
   }
 
-  public Track(Track other) {
-    _title = other._title;
-    _duration = new Duration(other._duration);
-  }
-
   public String getTitle() {
     return _title;
   }
@@ -31,7 +26,7 @@ public class Track {
     if (!testConstructorsAndGets()) passed = false;
 
     if (passed)
-      System.err.println("Test Track::main passed");
+      System.out.println("Test Track::main passed");
     else
       System.err.println("Error: Test Track::main failed");
   }

@@ -19,12 +19,6 @@ public class Duration implements Comparable<Duration> {
     normalise();
   }
 
-  public Duration(Duration other) {
-    _hours = other._hours;
-    _minutes = other._minutes;
-    _seconds = other._seconds;
-  }
-
   public int getHours() {
     return _hours;
   }
@@ -38,7 +32,7 @@ public class Duration implements Comparable<Duration> {
   }
 
   public Duration add(Duration other) {
-    Duration d = new Duration(this);
+    Duration d = new Duration(this._hours, this._minutes, this._seconds);
 
     d._hours += other._hours;
     d._minutes += other._minutes;
@@ -78,7 +72,7 @@ public class Duration implements Comparable<Duration> {
     if (!testCompareTo()) passed = false;
 
     if (passed)
-      System.err.println("Test Duration::main passed");
+      System.out.println("Test Duration::main passed");
     else
       System.err.println("Error: Test Duration::main failed");
   }
