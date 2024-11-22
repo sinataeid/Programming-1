@@ -77,10 +77,10 @@ public class Duration implements Comparable<Duration> {
     if (!testAdd()) passed = false;
     if (!testCompareTo()) passed = false;
 
-    if (!passed)
-      System.err.println("Error: Test Duration::main failed");
-    else
+    if (passed)
       System.err.println("Test Duration::main passed");
+    else
+      System.err.println("Error: Test Duration::main failed");
   }
 
   private static boolean testConstructorsAndGets() {
