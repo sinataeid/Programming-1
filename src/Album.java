@@ -93,16 +93,11 @@ public class Album {
   private static Album albumSample() {
     var track1 = new Track("Runaway", new Duration(198));
     var track2 = new Track("22", new Duration(214));
-    var track3 = new Track("22", new Duration(214));
-    var track4 = new Track("22", new Duration(214));
-    var track5 = new Track("22", new Duration(214));
 
     var a = new Album("Sina", "Yehor", 2008);
     a.addTrack(track1);
     a.addTrack(track2);
-    a.addTrack(track3);
-    a.addTrack(track4);
-    a.addTrack(track5);
+
 
     return a;
   }
