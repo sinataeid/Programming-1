@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.time.Year;
 
 public class Album {
   private String _artist;
@@ -33,8 +32,8 @@ public class Album {
     return _title;
   }
 
-  public String getReleaseYear() {
-    return _title;
+  public int getReleaseYear() {
+    return _releaseYear;
   }
 
   public ArrayList<Track> getTracks() {
@@ -44,7 +43,7 @@ public class Album {
   public void addTrack(Track track) {
     _tracks.add(track);
   }
-  
+
   public void deleteTrack(int index) {
     _tracks.remove(index);
   }
@@ -74,7 +73,7 @@ public class Album {
     // tests
     var passed = true;
 
-    if (!testConstructor())
+    if (!testConstructorsAndGets())
       passed = false;
     if (!testAddTrack())
       passed = false;
@@ -86,12 +85,55 @@ public class Album {
     } else {
       System.err.println("Error: Test Album::main failed");
     }
-
-    System.out.println(albumSample());
-
   }
-//change this to same
-  private static Album albumSample() {
+
+  public static boolean testConstructorsAndGets() {
+    var passed = true;
+
+    ArrayList<Track> trackArray = new ArrayList<>();
+    var track1 = new Track("Redbull", new Duration(120));
+    trackArray.add(track1);
+    var a = new Album("Adele", "21", 2015, trackArray);
+
+    if (!a._artist.equals("Adele") || !a._title.equals("21") || a._releaseYear != 2015) {
+      System.err.println(" hello Error: Test Album::testConstructorsAndGets failed");
+      passed = false;
+    }
+
+    var artist = a.getArtist();
+    if (!artist.equals("Adele")) {
+      System.err.println(
+          "2 Error: Test Album::testConstructorsAndGets failed");
+      passed = false;
+    }
+
+    var title = a.getTitle();
+    if (!title.equals("21")) {
+      System.err.println(
+          "3 Error: Test Album::testConstructorsAndGets failed");
+      passed = false;
+    }
+
+    var releaseYear = a.getReleaseYear();
+    if (releaseYear != 2015) {
+      System.err.println(
+          "4 Error: Test Album::testConstructorsAndGets failed");
+      passed = false;
+    }
+
+    var tracks = a.getTracks();
+    if (!trackArray.equals(tracks)) {
+      System.err.println(
+          "5 Error: Test Album::testConstructorsAndGets failed");
+      passed = false;
+    }
+
+    return passed;
+  }
+
+  public static boolean testAddTrack() {
+    var passed = true;
+
     var track1 = new Track("Runaway", new Duration(198));
     var track2 = new Track("22", new Duration(214));
 
@@ -99,44 +141,10 @@ public class Album {
     a.addTrack(track1);
     a.addTrack(track2);
 
-    return a;
-  }
-
-
-  public static boolean testConstructor() {
-    var passed = true;
-
-    var a = new Album("", "", 0);
-    if (!a._artist.equals("") || !a._title.equals("")) {
-      System.err.printf("Could not retrieve the desired value {%s}", a._artist);
+    if (a.getTracks().size() != 2) {
+      System.err.println("Error: Test Add Track::testAddTrack failed");
       passed = false;
     }
-
-    a = new Album("Adele", "21", 0);
-    if (!a._artist.equals("Adele") || !a._title.equals("21")) {
-      System.err.printf("Could not retrieve the desired value {%s}", a._artist);
-      passed = false;
-    }
-
-    a = new Album("", "", -2);
-    if (a._releaseYear != 0) {
-      System.err.printf("Error: release year cannot be less that 0 Found %d/n", a._releaseYear);
-      passed = false;
-    }
-
-    return passed;
-
-  }
-
-  public static boolean testAddTrack() {
-    var passed = true;
-
-    var a = albumSample();
-
-      if (a.getTracks().size() != 2) {
-        System.err.println("Error: Test Add Track::testAddTrack failed");
-        passed = false;
-      }
 
     return passed;
   }
@@ -144,7 +152,12 @@ public class Album {
   public static boolean testDeleteTrack() {
     var passed = true;
 
-    var a = albumSample();
+    var track1 = new Track("Runaway", new Duration(198));
+    var track2 = new Track("22", new Duration(214));
+
+    var a = new Album("Sina", "Yehor", 2008);
+    a.addTrack(track1);
+    a.addTrack(track2);
 
     a.deleteTrack(0);
 
@@ -156,5 +169,5 @@ public class Album {
     return passed;
   }
 
-  //test getters and rewrite my tests in album which is consistent
+  // test getters and rewrite my tests in album which is consistent
 }
