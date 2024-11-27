@@ -90,7 +90,7 @@ public class Album {
     System.out.println(albumSample());
 
   }
-
+//change this to same
   private static Album albumSample() {
     var track1 = new Track("Runaway", new Duration(198));
     var track2 = new Track("22", new Duration(214));
@@ -102,11 +102,9 @@ public class Album {
     return a;
   }
 
-  // tests here
+
   public static boolean testConstructor() {
     var passed = true;
-
-    // test the second constructor that tests my tracks
 
     var a = new Album("", "", 0);
     if (!a._artist.equals("") || !a._title.equals("")) {
@@ -157,4 +155,6 @@ public class Album {
 
     return passed;
   }
+
+  //test getters and rewrite my tests in album which is consistent
 }
