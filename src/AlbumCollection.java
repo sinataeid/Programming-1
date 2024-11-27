@@ -22,7 +22,7 @@ public class AlbumCollection {
   }
 
   public void addAlbum(Album album) {
-    _albums.add(album);
+    _albums.add(new Album(album));
   }
 
   public void deleteAlbum(int index) {

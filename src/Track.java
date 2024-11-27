@@ -3,8 +3,8 @@ public class Track {
   private Duration _duration;
 
   public Track(String title, Duration duration) {
-    _title = title;
-    _duration = duration;
+    _title = new String(title);
+    _duration = new Duration(duration);
   }
 
   public Track(Track other) {

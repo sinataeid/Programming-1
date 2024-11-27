@@ -12,12 +12,19 @@ public class Album {
   }
 
   public Album(String artist, String title, int releaseYear, ArrayList<Track> tracks) {
-
-    _artist = artist;
-    _title = title;
+    _artist = new String(artist);
+    _title = new String(title);
     _releaseYear = Math.max(0, releaseYear);
-    _tracks = tracks;
+    _tracks = new ArrayList<Track>();
+    for (var track : tracks) _tracks.add(new Track(track));
+  }
 
+  public Album(Album other) {
+    _artist = new String(other._artist);
+    _title = new String(other._title);
+    _releaseYear = other._releaseYear;
+    _tracks = new ArrayList<Track>();
+    for (var track : other._tracks) _tracks.add(new Track(track));
   }
 
   public String getArtist() {
