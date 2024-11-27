@@ -8,13 +8,11 @@ public class AlbumCollection {
   }
 
   public AlbumCollection(ArrayList<Album> albums) {
-    _albums = new ArrayList<Album>();
-    for (var album : albums) _albums.add(new Album(album));
+    _albums = albums;
   }
 
   public AlbumCollection(AlbumCollection other) {
-    _albums = new ArrayList<Album>();
-    for (var album : other._albums) _albums.add(new Album(album));
+    _albums = other._albums;
   }
 
   public ArrayList<Album> getAlbums() {
@@ -22,10 +20,11 @@ public class AlbumCollection {
   }
 
   public void addAlbum(Album album) {
-    _albums.add(new Album(album));
+    _albums.add(album);
   }
 
   public void deleteAlbum(int index) {
+    if (index < 0 || index >= _albums.size()) return;
     _albums.remove(index);
   }
 
@@ -35,7 +34,7 @@ public class AlbumCollection {
     sb.append("[\n");
 
     for (var album : _albums) {
-      sb.append(album.toString().indent(4));
+      sb.append(album.toString().indent(2));
     }
 
     sb.append("]");

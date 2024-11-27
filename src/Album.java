@@ -12,19 +12,17 @@ public class Album {
   }
 
   public Album(String artist, String title, int releaseYear, ArrayList<Track> tracks) {
-    _artist = new String(artist);
-    _title = new String(title);
+    _artist = artist;
+    _title = title;
     _releaseYear = Math.max(0, releaseYear);
-    _tracks = new ArrayList<Track>();
-    for (var track : tracks) _tracks.add(new Track(track));
+    _tracks = tracks;
   }
 
   public Album(Album other) {
-    _artist = new String(other._artist);
-    _title = new String(other._title);
+    _artist = other._artist;
+    _title = other._title;
     _releaseYear = other._releaseYear;
-    _tracks = new ArrayList<Track>();
-    for (var track : other._tracks) _tracks.add(new Track(track));
+    _tracks = other._tracks;
   }
 
   public String getArtist() {
@@ -48,12 +46,16 @@ public class Album {
   }
 
   public String toString() {
-    String trackList = "";
-    for (Track t : _tracks) {
-      trackList += t + "\n\t";
+    var sb = new StringBuilder();
+    sb.append(_artist).append(" - ").append(_title).append(" <")
+    .append(_releaseYear).append(">").append("\n[\n");
+
+    for (var track : _tracks) {
+      sb.append(track.toString().indent(2));
     }
-    var totalDuration = totalDuration();
-    return String.format("%s - %s <%d> (%s) : [\nTracks: %s] ", _artist, _title, _releaseYear, totalDuration, trackList);
+
+    sb.append("]");
+    return sb.toString();
   }
 
   public void deleteTrack(int index) {

@@ -3,13 +3,13 @@ public class Track {
   private Duration _duration;
 
   public Track(String title, Duration duration) {
-    _title = new String(title);
-    _duration = new Duration(duration);
+    _title = title;
+    _duration = duration;
   }
 
   public Track(Track other) {
-    _title = new String(other._title);
-    _duration = new Duration(other._duration);
+    _title = other._title;
+    _duration = other._duration;
   }
 
   public String getTitle() {
