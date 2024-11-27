@@ -44,11 +44,15 @@ public class Album {
   public void addTrack(Track track) {
     _tracks.add(track);
   }
+  
+  public void deleteTrack(int index) {
+    _tracks.remove(index);
+  }
 
   public String toString() {
     var sb = new StringBuilder();
     sb.append(_artist).append(" - ").append(_title).append(" <")
-    .append(_releaseYear).append(">").append("\n[\n");
+        .append(_releaseYear).append("> (").append(totalDuration()).append(")").append("\n[\n");
 
     for (var track : _tracks) {
       sb.append(track.toString().indent(2));
@@ -56,10 +60,6 @@ public class Album {
 
     sb.append("]");
     return sb.toString();
-  }
-
-  public void deleteTrack(int index) {
-    _tracks.remove(index);
   }
 
   private Duration totalDuration() {
@@ -74,11 +74,12 @@ public class Album {
     // tests
     var passed = true;
 
-    if (!EmptyValue_MathClamp_TestConstructor()) passed = false;
-
-    if (!testAddTrack()) passed = false; 
-    
-    if (!testDeleteTrack()) passed = false;
+    if (!testConstructor())
+      passed = false;
+    if (!testAddTrack())
+      passed = false;
+    if (!testDeleteTrack())
+      passed = false;
 
     if (passed) {
       System.out.println("Test Album::main passed");
@@ -98,12 +99,11 @@ public class Album {
     a.addTrack(track1);
     a.addTrack(track2);
 
-
     return a;
   }
 
   // tests here
-  public static boolean EmptyValue_MathClamp_TestConstructor() {
+  public static boolean testConstructor() {
     var passed = true;
 
     // test the second constructor that tests my tracks
@@ -121,8 +121,7 @@ public class Album {
     }
 
     a = new Album("", "", -2);
-    int currentYear = Year.now().getValue();
-    if (a._releaseYear < 0 || a._releaseYear > currentYear) {
+    if (a._releaseYear != 0) {
       System.err.printf("Error: release year cannot be less that 0 Found %d/n", a._releaseYear);
       passed = false;
     }
@@ -136,12 +135,10 @@ public class Album {
 
     var a = albumSample();
 
-    {
       if (a.getTracks().size() != 2) {
         System.err.println("Error: Test Add Track::testAddTrack failed");
         passed = false;
       }
-    }
 
     return passed;
   }
@@ -157,7 +154,6 @@ public class Album {
       System.err.println("Error: Test Delete Track::deleteTrack failed");
       passed = false;
     }
-
 
     return passed;
   }
