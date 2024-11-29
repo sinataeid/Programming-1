@@ -51,6 +51,7 @@ public class AlbumDatabase {
       result.addAlbum(album);
     }
 
+    scanner.close();
     return result;
   }
 
