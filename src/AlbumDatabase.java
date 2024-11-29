@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -57,7 +58,9 @@ public class AlbumDatabase {
     try {
       var albumCollection = readAlbumCollectionFile("./albums.txt");
 
-      System.out.println(albumCollection);
+      // task 2
+      albumCollection.getAlbums().sort(Comparator.comparing(Album::getArtist).thenComparing(Album::getReleaseYear));
+      System.out.printf("Task 2: %s\n", albumCollection);
 
       // task 3
       var kraftwerkTotalDuration = new Duration(0);
@@ -67,6 +70,15 @@ public class AlbumDatabase {
       }
 
       System.out.printf("Task 3: The total play time of Kraftwerk albums is %s\n", kraftwerkTotalDuration);
+
+      // task 4
+      var albumShortestTitle = albumCollection.getAlbums().getFirst();
+      for (var album : albumCollection.getAlbums()) {
+        if (album.getTitle().length() < albumShortestTitle.getTitle().length())
+          albumShortestTitle = album;
+      }
+
+      System.out.printf("Task 4: The album with the shortest title is: %s\n", albumShortestTitle);
 
       // task 5
       var longestTrack = albumCollection.getAlbums().getFirst().getTracks().getFirst();

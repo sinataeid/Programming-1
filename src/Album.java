@@ -97,35 +97,35 @@ public class Album {
     var a = new Album("Adele", "21", 2015, trackArray);
 
     if (!a._artist.equals("Adele") || !a._title.equals("21") || a._releaseYear != 2015) {
-      System.err.println(" hello Error: Test Album::testConstructorsAndGets failed");
+      System.err.println("Error: Test Album::testConstructorsAndGets failed: testConstructor");
       passed = false;
     }
 
     var artist = a.getArtist();
     if (!artist.equals("Adele")) {
       System.err.println(
-          "2 Error: Test Album::testConstructorsAndGets failed");
+          "2 Error: Test Album::testConstructorsAndGets failed: getArtist");
       passed = false;
     }
 
     var title = a.getTitle();
     if (!title.equals("21")) {
       System.err.println(
-          "3 Error: Test Album::testConstructorsAndGets failed");
+          "3 Error: Test Album::testConstructorsAndGets failed: getTitle");
       passed = false;
     }
 
     var releaseYear = a.getReleaseYear();
     if (releaseYear != 2015) {
       System.err.println(
-          "4 Error: Test Album::testConstructorsAndGets failed");
+          "4 Error: Test Album::testConstructorsAndGets failed: getReleaseYear failed: getReleaseYear");
       passed = false;
     }
 
     var tracks = a.getTracks();
     if (!trackArray.equals(tracks)) {
       System.err.println(
-          "5 Error: Test Album::testConstructorsAndGets failed");
+          "Error: Test Album::testConstructorsAndGets failed: getTracks");
       passed = false;
     }
 
