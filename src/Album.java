@@ -40,6 +40,15 @@ public class Album {
     return _tracks;
   }
 
+  public Duration getTotalDuration() {
+    // TODO: test it
+    var totalDuration = new Duration(0);
+    for (Track track : _tracks) {
+      totalDuration = totalDuration.add(track.getDuration());
+    }
+    return totalDuration;
+  }
+
   public void addTrack(Track track) {
     _tracks.add(track);
   }
@@ -51,7 +60,7 @@ public class Album {
   public String toString() {
     var sb = new StringBuilder();
     sb.append(_artist).append(" - ").append(_title).append(" <")
-        .append(_releaseYear).append("> (").append(totalDuration()).append(")").append("\n[\n");
+        .append(_releaseYear).append("> (").append(getTotalDuration()).append(")").append("\n[\n");
 
     for (var track : _tracks) {
       sb.append(track.toString().indent(2));
@@ -59,14 +68,6 @@ public class Album {
 
     sb.append("]");
     return sb.toString();
-  }
-
-  private Duration totalDuration() {
-    var totalDuration = new Duration(0);
-    for (Track track : _tracks) {
-      totalDuration = totalDuration.add(track.getDuration());
-    }
-    return totalDuration;
   }
 
   public static void main(String[] args) {

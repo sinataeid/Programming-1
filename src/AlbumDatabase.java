@@ -58,6 +58,26 @@ public class AlbumDatabase {
       var albumCollection = readAlbumCollectionFile("./albums.txt");
 
       System.out.println(albumCollection);
+
+      // task 3
+      var kraftwerkTotalDuration = new Duration(0);
+      for (var album : albumCollection.getAlbums()) {
+        if (album.getArtist().equals("Kraftwerk"))
+          kraftwerkTotalDuration = kraftwerkTotalDuration.add(album.getTotalDuration());
+      }
+
+      System.out.printf("Task 3: The total play time of Kraftwerk albums is %s\n", kraftwerkTotalDuration);
+
+      // task 5
+      var longestTrack = albumCollection.getAlbums().getFirst().getTracks().getFirst();
+      for (var album : albumCollection.getAlbums()) {
+        for (var track : album.getTracks()) {
+          if (longestTrack.getDuration().compareTo(track.getDuration()) < 0)
+            longestTrack = track;
+        }
+      }
+
+      System.out.printf("Task 5: The longest track is %s\n", longestTrack);
     } catch (Exception e) {
       System.err.printf("Error: %s\n", e.getMessage());
     }
