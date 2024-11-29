@@ -61,12 +61,21 @@ public class AlbumDatabase {
     try {
       var albumCollection = readAlbumCollectionFile("./albums.txt");
 
-      
-      System.out.println(albumCollection);
+
+      // task 2
       albumCollection.getAlbums().sort(Comparator.comparing(Album::getArtist).thenComparing(Album::getReleaseYear));
       System.out.println(albumCollection);
 
 
+
+      // task 4
+      Album albumShortestTitle = albumCollection.getAlbums().getFirst();
+      for (var album : albumCollection.getAlbums()) {
+        if (album.getTitle().length() < albumShortestTitle.getTitle().length()) {
+          albumShortestTitle = album;
+        }
+      }
+      System.out.println(albumShortestTitle);
 
     } catch (Exception e) {
       System.err.printf("Error: %s\n", e.getMessage());
