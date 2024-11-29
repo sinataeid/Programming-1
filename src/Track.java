@@ -28,7 +28,8 @@ public class Track {
   public static void main(String[] args) {
     var passed = true;
 
-    if (!testConstructorsAndGets()) passed = false;
+    if (!testConstructorsAndGets())
+      passed = false;
 
     if (passed)
       System.out.println("Test Track::main passed");

@@ -73,9 +73,12 @@ public class Duration implements Comparable<Duration> {
   public static void main(String[] args) {
     var passed = true;
 
-    if (!testConstructorsAndGets()) passed = false;
-    if (!testAdd()) passed = false;
-    if (!testCompareTo()) passed = false;
+    if (!testConstructorsAndGets())
+      passed = false;
+    if (!testAdd())
+      passed = false;
+    if (!testCompareTo())
+      passed = false;
 
     if (passed)
       System.out.println("Test Duration::main passed");
@@ -89,38 +92,38 @@ public class Duration implements Comparable<Duration> {
     var constructorArguments = new ArrayList<int[]>();
     var expectedComponents = new ArrayList<int[]>();
 
-    constructorArguments.add(new int[]{-1});
-    expectedComponents.add(new int[]{0, 0, 0});
-    
-    constructorArguments.add(new int[]{0});
-    expectedComponents.add(new int[]{0, 0, 0});
+    constructorArguments.add(new int[] { -1 });
+    expectedComponents.add(new int[] { 0, 0, 0 });
 
-    constructorArguments.add(new int[]{1});
-    expectedComponents.add(new int[]{0, 0, 1});
+    constructorArguments.add(new int[] { 0 });
+    expectedComponents.add(new int[] { 0, 0, 0 });
 
-    constructorArguments.add(new int[]{60});
-    expectedComponents.add(new int[]{0, 1, 0});
+    constructorArguments.add(new int[] { 1 });
+    expectedComponents.add(new int[] { 0, 0, 1 });
 
-    constructorArguments.add(new int[]{3600});
-    expectedComponents.add(new int[]{1, 0, 0});
+    constructorArguments.add(new int[] { 60 });
+    expectedComponents.add(new int[] { 0, 1, 0 });
 
-    constructorArguments.add(new int[]{3661});
-    expectedComponents.add(new int[]{1, 1, 1});
+    constructorArguments.add(new int[] { 3600 });
+    expectedComponents.add(new int[] { 1, 0, 0 });
 
-    constructorArguments.add(new int[]{-1, -1, -1});
-    expectedComponents.add(new int[]{0, 0, 0});
+    constructorArguments.add(new int[] { 3661 });
+    expectedComponents.add(new int[] { 1, 1, 1 });
 
-    constructorArguments.add(new int[]{0, 0, 0});
-    expectedComponents.add(new int[]{0, 0, 0});
+    constructorArguments.add(new int[] { -1, -1, -1 });
+    expectedComponents.add(new int[] { 0, 0, 0 });
 
-    constructorArguments.add(new int[]{1, 2, 3});
-    expectedComponents.add(new int[]{1, 2, 3});
+    constructorArguments.add(new int[] { 0, 0, 0 });
+    expectedComponents.add(new int[] { 0, 0, 0 });
 
-    constructorArguments.add(new int[]{60, 60, 60});
-    expectedComponents.add(new int[]{61, 1, 0});
+    constructorArguments.add(new int[] { 1, 2, 3 });
+    expectedComponents.add(new int[] { 1, 2, 3 });
 
-    constructorArguments.add(new int[]{100, 200, 300});
-    expectedComponents.add(new int[]{103, 25, 0});
+    constructorArguments.add(new int[] { 60, 60, 60 });
+    expectedComponents.add(new int[] { 61, 1, 0 });
+
+    constructorArguments.add(new int[] { 100, 200, 300 });
+    expectedComponents.add(new int[] { 103, 25, 0 });
 
     for (var i = 0; i < constructorArguments.size(); ++i) {
       var arguments = constructorArguments.get(i);
@@ -171,7 +174,7 @@ public class Duration implements Comparable<Duration> {
       }
     }
 
-    return  passed;
+    return passed;
   }
 
   private static boolean testAdd() {

@@ -47,7 +47,7 @@ public class AlbumDatabase {
         var track = new Track(trackTitle, trackDuration);
         album.addTrack(track);
       }
-      
+
       result.addAlbum(album);
     }
 

@@ -24,7 +24,8 @@ public class AlbumCollection {
   }
 
   public void deleteAlbum(int index) {
-    if (index < 0 || index >= _albums.size()) return;
+    if (index < 0 || index >= _albums.size())
+      return;
     _albums.remove(index);
   }
 
@@ -44,12 +45,17 @@ public class AlbumCollection {
   public static void main(String[] args) {
     var passed = true;
 
-    if (!testConstructorsAndGets()) passed = false;
-    if (!testAddAlbum()) passed = false;
-    if (!testDeleteAlbum()) passed = false;
+    if (!testConstructorsAndGets())
+      passed = false;
+    if (!testAddAlbum())
+      passed = false;
+    if (!testDeleteAlbum())
+      passed = false;
 
-    if (passed) System.out.println("Test AlbumCollection::main passed");
-    else System.err.println("Error: Test AlbumCollection::main failed");
+    if (passed)
+      System.out.println("Test AlbumCollection::main passed");
+    else
+      System.err.println("Error: Test AlbumCollection::main failed");
   }
 
   public static boolean testConstructorsAndGets() {
@@ -125,7 +131,8 @@ public class AlbumCollection {
     if (!ac._albums.equals(as)) {
       System.err.printf(
           "Error: Test AlbumCollection::testAddAlbum failed: albumCollection = new AlbumCollection(); albumCollection.addAlbum(Album{\"%s\", \"%s\", %d, %s}); albumCollection.addAlbum(Album{\"%s\", \"%s\", %d, %s}); albumCollection is AlbumCollection{%s}\n",
-          a1.getArtist(), a1.getTitle(), a1.getReleaseYear(), a1.getTracks(), a1.getArtist(), a1.getTitle(), a1.getReleaseYear(), a1.getTracks(), ac._albums);
+          a1.getArtist(), a1.getTitle(), a1.getReleaseYear(), a1.getTracks(), a1.getArtist(), a1.getTitle(),
+          a1.getReleaseYear(), a1.getTracks(), ac._albums);
       passed = false;
     }
 
