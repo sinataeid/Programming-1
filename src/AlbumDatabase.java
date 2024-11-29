@@ -1,10 +1,9 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class AlbumDatabase {
-  private static AlbumCollection readAlbumCollectionFile(String fileName) throws FileNotFoundException, UnsupportedOperationException {
+  private static AlbumCollection readAlbumCollectionFile(String fileName) throws Exception {
     var result = new AlbumCollection();
 
     var scanner = new Scanner(new File(fileName));
