@@ -41,7 +41,6 @@ public class Album {
   }
 
   public Duration getTotalDuration() {
-    // TODO: test it
     var totalDuration = new Duration(0);
     for (Track track : _tracks) {
       totalDuration = totalDuration.add(track.getDuration());
@@ -71,7 +70,6 @@ public class Album {
   }
 
   public static void main(String[] args) {
-    // tests
     var passed = true;
 
     if (!testConstructorsAndGets())
@@ -169,6 +167,4 @@ public class Album {
 
     return passed;
   }
-
-  // test getters and rewrite my tests in album which is consistent
 }
