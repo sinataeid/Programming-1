@@ -227,10 +227,10 @@ public class Duration implements Comparable<Duration> {
         var di = durations.get(i);
         var dj = durations.get(j);
 
-        var indexDiffBound = Math.clamp(i - j, -1, 1);
+        var indexDiffBound = Math.min(Math.max(i - j, -1), 1);
 
         var valueDiff = di.compareTo(dj);
-        var valueDiffBound = Math.clamp(valueDiff, -1, 1);
+        var valueDiffBound = Math.min(Math.max(valueDiff, -1), 1);
 
         if (indexDiffBound != valueDiffBound) {
           System.err.printf(

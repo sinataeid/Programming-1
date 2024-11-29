@@ -73,7 +73,7 @@ public class AlbumDatabase {
       System.out.printf("Task 3: The total play time of Kraftwerk albums is %s\n", kraftwerkTotalDuration);
 
       // task 4
-      var albumShortestTitle = albumCollection.getAlbums().getFirst();
+      var albumShortestTitle = albumCollection.getAlbums().get(0);
       for (var album : albumCollection.getAlbums()) {
         if (album.getTitle().length() < albumShortestTitle.getTitle().length())
           albumShortestTitle = album;
@@ -82,7 +82,7 @@ public class AlbumDatabase {
       System.out.printf("Task 4: The album with the shortest title is: %s\n", albumShortestTitle);
 
       // task 5
-      var longestTrack = albumCollection.getAlbums().getFirst().getTracks().getFirst();
+      var longestTrack = albumCollection.getAlbums().get(0).getTracks().get(0);
       for (var album : albumCollection.getAlbums()) {
         for (var track : album.getTracks()) {
           if (longestTrack.getDuration().compareTo(track.getDuration()) < 0)
