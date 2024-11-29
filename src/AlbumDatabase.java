@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AlbumDatabase {
   private static AlbumCollection readAlbumCollectionFile(String fileName) throws FileNotFoundException, UnsupportedOperationException {
@@ -58,7 +61,13 @@ public class AlbumDatabase {
     try {
       var albumCollection = readAlbumCollectionFile("./albums.txt");
 
+      
       System.out.println(albumCollection);
+      albumCollection.getAlbums().sort(Comparator.comparing(Album::getArtist).thenComparing(Album::getReleaseYear));
+      System.out.println(albumCollection);
+
+
+
     } catch (Exception e) {
       System.err.printf("Error: %s\n", e.getMessage());
     }
