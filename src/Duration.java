@@ -38,7 +38,7 @@ public class Duration implements Comparable<Duration> {
   }
 
   public Duration add(Duration other) {
-    Duration d = new Duration(other);
+    Duration d = new Duration(this);
 
     d._hours += other._hours;
     d._minutes += other._minutes;
